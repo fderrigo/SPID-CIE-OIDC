@@ -1,29 +1,105 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B30E6766-2951-5897-AD3A-277C505FB7B9}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpidCieOidc.Web", "src\SpidCieOidc.Web\SpidCieOidc.Web.csproj", "{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B5C9A30-7E2A-4C4E-9F1A-0D2E3F4A5B6C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{97F3DF72-3610-57A5-B61F-B9031EBDECE5}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		README.md = README.md
 		docker-compose.yml = docker-compose.yml
 		e2e_test.sh = e2e_test.sh
-		.gitignore = .gitignore
-		.gitattributes = .gitattributes
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{2C6DAB41-8F3B-4D5F-A02B-1E3F4A5B6C7D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{B8C8E006-B631-5708-88CD-05A20A50A4B0}"
+	ProjectSection(SolutionItems) = preProject
+		infra\README.md = infra\README.md
+		infra\UPSTREAM_LICENSE = infra\UPSTREAM_LICENSE
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "federation_authority", "federation_authority", "{2066AC04-74D7-53CA-A95F-B1EB299C17D4}"
+	ProjectSection(SolutionItems) = preProject
+		infra\federation_authority\db.sqlite3 = infra\federation_authority\db.sqlite3
+		infra\federation_authority\dump_data.sh = infra\federation_authority\dump_data.sh
+		infra\federation_authority\manage.py = infra\federation_authority\manage.py
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dumps", "dumps", "{666DD07F-BE81-5FC8-91DB-1D5496DA43E6}"
+	ProjectSection(SolutionItems) = preProject
+		infra\federation_authority\dumps\example.json = infra\federation_authority\dumps\example.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "federation_authority", "federation_authority", "{00931944-B7AC-5D4B-A881-A2CF150BC2BE}"
+	ProjectSection(SolutionItems) = preProject
+		infra\federation_authority\federation_authority\__init__.py = infra\federation_authority\federation_authority\__init__.py
+		infra\federation_authority\federation_authority\asgi.py = infra\federation_authority\federation_authority\asgi.py
+		infra\federation_authority\federation_authority\settings.py = infra\federation_authority\federation_authority\settings.py
+		infra\federation_authority\federation_authority\settingslocal.py = infra\federation_authority\federation_authority\settingslocal.py
+		infra\federation_authority\federation_authority\settingslocal.py.example = infra\federation_authority\federation_authority\settingslocal.py.example
+		infra\federation_authority\federation_authority\urls.py = infra\federation_authority\federation_authority\urls.py
+		infra\federation_authority\federation_authority\wsgi.py = infra\federation_authority\federation_authority\wsgi.py
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logs", "logs", "{C1106251-B62B-5B71-8C64-AD15B235F4FC}"
+	ProjectSection(SolutionItems) = preProject
+		infra\federation_authority\logs\README.md = infra\federation_authority\logs\README.md
+		infra\federation_authority\logs\trust_anchor.log = infra\federation_authority\logs\trust_anchor.log
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{3606D459-9386-5DBA-88DF-DDFF7AD75AB3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "admin", "admin", "{F2E742E9-2168-5273-95A2-9DF40D11B8CB}"
+	ProjectSection(SolutionItems) = preProject
+		infra\federation_authority\templates\admin\change_form.html = infra\federation_authority\templates\admin\change_form.html
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "provider", "provider", "{489F3386-2BB5-5BCA-A604-6B964CF91056}"
+	ProjectSection(SolutionItems) = preProject
+		infra\provider\db.sqlite3 = infra\provider\db.sqlite3
+		infra\provider\dump_data.sh = infra\provider\dump_data.sh
+		infra\provider\manage.py = infra\provider\manage.py
+		infra\provider\run.sh = infra\provider\run.sh
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dumps", "dumps", "{D930FC3F-F564-5881-8A16-5953CCE9A21B}"
+	ProjectSection(SolutionItems) = preProject
+		infra\provider\dumps\example.json = infra\provider\dumps\example.json
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "logs", "logs", "{2B25113D-8A1F-5AB2-94F9-2102EF888B99}"
+	ProjectSection(SolutionItems) = preProject
+		infra\provider\logs\README.md = infra\provider\logs\README.md
+		infra\provider\logs\provider.log = infra\provider\logs\provider.log
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "provider", "provider", "{05579358-8FB1-5DD4-92F5-9EBF5822E9C1}"
+	ProjectSection(SolutionItems) = preProject
+		infra\provider\provider\__init__.py = infra\provider\provider\__init__.py
+		infra\provider\provider\asgi.py = infra\provider\provider\asgi.py
+		infra\provider\provider\settings.py = infra\provider\provider\settings.py
+		infra\provider\provider\settingslocal.py = infra\provider\provider\settingslocal.py
+		infra\provider\provider\settingslocal.py.example = infra\provider\provider\settingslocal.py.example
+		infra\provider\provider\urls.py = infra\provider\provider\urls.py
+		infra\provider\provider\wsgi.py = infra\provider\provider\wsgi.py
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{3CB785A7-2DC9-58FC-A02D-F377298596CA}"
 	ProjectSection(SolutionItems) = preProject
 		scripts\add-hosts.ps1 = scripts\add-hosts.ps1
+		scripts\gen-solution.py = scripts\gen-solution.py
 		scripts\setup-secrets.ps1 = scripts\setup-secrets.ps1
 		scripts\start.ps1 = scripts\start.ps1
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{3D7EBC52-9A4C-4E6F-B13C-2F4A5B6C7D8E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "secrets", "secrets", "{39D4A322-2F34-5DFD-9E0B-69E0FC1DD5E9}"
 	ProjectSection(SolutionItems) = preProject
-		infra\README.md = infra\README.md
-		infra\UPSTREAM_LICENSE = infra\UPSTREAM_LICENSE
+		secrets\README.md = secrets\README.md
+		secrets\rp_private_keys.json = secrets\rp_private_keys.json
+		secrets\rp_private_keys.sample.json = secrets\rp_private_keys.sample.json
 	EndProjectSection
 EndProject
 Global
@@ -39,5 +115,18 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A} = {B30E6766-2951-5897-AD3A-277C505FB7B9}
+		{2066AC04-74D7-53CA-A95F-B1EB299C17D4} = {B8C8E006-B631-5708-88CD-05A20A50A4B0}
+		{666DD07F-BE81-5FC8-91DB-1D5496DA43E6} = {2066AC04-74D7-53CA-A95F-B1EB299C17D4}
+		{00931944-B7AC-5D4B-A881-A2CF150BC2BE} = {2066AC04-74D7-53CA-A95F-B1EB299C17D4}
+		{C1106251-B62B-5B71-8C64-AD15B235F4FC} = {2066AC04-74D7-53CA-A95F-B1EB299C17D4}
+		{3606D459-9386-5DBA-88DF-DDFF7AD75AB3} = {2066AC04-74D7-53CA-A95F-B1EB299C17D4}
+		{F2E742E9-2168-5273-95A2-9DF40D11B8CB} = {3606D459-9386-5DBA-88DF-DDFF7AD75AB3}
+		{489F3386-2BB5-5BCA-A604-6B964CF91056} = {B8C8E006-B631-5708-88CD-05A20A50A4B0}
+		{D930FC3F-F564-5881-8A16-5953CCE9A21B} = {489F3386-2BB5-5BCA-A604-6B964CF91056}
+		{2B25113D-8A1F-5AB2-94F9-2102EF888B99} = {489F3386-2BB5-5BCA-A604-6B964CF91056}
+		{05579358-8FB1-5DD4-92F5-9EBF5822E9C1} = {489F3386-2BB5-5BCA-A604-6B964CF91056}
 	EndGlobalSection
 EndGlobal
