@@ -1,39 +1,43 @@
-﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpidCieOidc.Web", "src\SpidCieOidc.Web\SpidCieOidc.Web.csproj", "{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1B5C9A30-7E2A-4C4E-9F1A-0D2E3F4A5B6C}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		docker-compose.yml = docker-compose.yml
+		e2e_test.sh = e2e_test.sh
+		.gitignore = .gitignore
+		.gitattributes = .gitattributes
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{2C6DAB41-8F3B-4D5F-A02B-1E3F4A5B6C7D}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\add-hosts.ps1 = scripts\add-hosts.ps1
+		scripts\setup-secrets.ps1 = scripts\setup-secrets.ps1
+		scripts\start.ps1 = scripts\start.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{3D7EBC52-9A4C-4E6F-B13C-2F4A5B6C7D8E}"
+	ProjectSection(SolutionItems) = preProject
+		infra\README.md = infra\README.md
+		infra\UPSTREAM_LICENSE = infra\UPSTREAM_LICENSE
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		Debug|x64 = Debug|x64
-		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
-		Release|x64 = Release|x64
-		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Debug|x64.Build.0 = Debug|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Debug|x86.Build.0 = Debug|Any CPU
 		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Release|x64.ActiveCfg = Release|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Release|x64.Build.0 = Release|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Release|x86.ActiveCfg = Release|Any CPU
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{18A10E34-B466-4EB9-AD1E-3AA4C5E64D5A} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 	EndGlobalSection
 EndGlobal
