@@ -1,0 +1,10 @@
+@model ErrorViewModel
+@{
+    ViewData["Title"] = "Errore";
+}
+
+<h1 class="err">⚠ @Model.Title</h1>
+<div class="card">
+    <pre>@Model.Detail</pre>
+</div>
+<a class="btn" href="/oidc/rp/landing">↩ Home</a>

@@ -1,0 +1,22 @@
+# build output
+bin/
+obj/
+# IDE
+.vs/
+.idea/
+*.user
+
+# SECRETS — never commit real RP private keys.
+# Only the *.sample.json (demo test keys) and the readme are tracked.
+secrets/*
+!secrets/*.sample.json
+!secrets/README.md
+
+# e2e_test.sh scratch artifacts (self-cleaned, ignored in case of interruption)
+/op_jar.txt
+/rp_jar.txt
+/login.html
+/consent.html
+/profile.html
+/refresh.html
+/logout.html

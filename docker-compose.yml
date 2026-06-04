@@ -1,0 +1,58 @@
+# SPID/CIE OIDC local test federation.
+#   trust-anchor.org:8000  Federation Authority (Trust Anchor) - official italia image
+#   cie-provider.org:8002  OpenID Provider (CIE)               - official italia image
+#   relying-party.org:8001 .NET Relying Party (this project)   - built from ./src
+#
+# Add to your hosts file (see scripts/):
+#   127.0.0.1  trust-anchor.org  relying-party.org  cie-provider.org
+services:
+  trust-anchor.org:
+    image: ghcr.io/italia/spid-cie-oidc-django:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./infra/federation_authority:/django-project
+    networks:
+      - oidcfed
+    command: >
+      bash -c "cd /django-project/ &&
+      python3 manage.py migrate &&
+      python3 manage.py loaddata dumps/example.json &&
+      python3 manage.py runserver 0.0.0.0:8000"
+
+  cie-provider.org:
+    image: ghcr.io/italia/spid-cie-oidc-django:latest
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./infra/provider:/django-project
+    networks:
+      - oidcfed
+    depends_on:
+      - trust-anchor.org
+    command: >
+      bash -c "cd /django-project/ &&
+      python3 manage.py migrate &&
+      python3 manage.py loaddata dumps/example.json &&
+      python3 manage.py runserver 0.0.0.0:8002"
+
+  relying-party.org:
+    build:
+      context: ./src/SpidCieOidc.Web
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    environment:
+      # DEMO ONLY: load the test RP private keys from the mounted secret file.
+      # In production set Rp__PrivateKeys (env / Key Vault) or mount a real secret here.
+      - Rp__PrivateKeysFile=/secrets/rp_private_keys.json
+    volumes:
+      - ./secrets:/secrets:ro
+    networks:
+      - oidcfed
+    depends_on:
+      - trust-anchor.org
+      - cie-provider.org
+
+networks:
+  oidcfed:

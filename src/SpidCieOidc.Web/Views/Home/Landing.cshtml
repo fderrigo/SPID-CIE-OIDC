@@ -1,0 +1,23 @@
+@model LandingViewModel
+@{
+    ViewData["Title"] = "SPID/CIE OIDC — .NET Relying Party";
+}
+
+<h1>🔐 SPID / CIE OIDC — .NET Relying Party</h1>
+
+<div class="card">
+    <p><b>client_id:</b> <code>@Model.ClientId</code></p>
+    <p>Avvia il flusso OpenID Connect Federation (authorization code + PKCE):</p>
+    <a class="btn" href="/oidc/rp/authorization?profile=spid">Entra con SPID</a>
+    <a class="btn cie" href="/oidc/rp/authorization?profile=cie">Entra con CIE</a>
+    <table style="margin-top:16px">
+        <tr><th>SPID provider</th><td><code>@Model.SpidProvider</code></td></tr>
+        <tr><th>CIE provider</th><td><code>@Model.CieProvider</code></td></tr>
+    </table>
+</div>
+
+<div class="card">
+    <p>Entity configuration:
+        <a href="/.well-known/openid-federation">/.well-known/openid-federation</a></p>
+    <p>Login demo OP: <code>admin / oidcadmin</code> oppure <code>user / oidcuser</code></p>
+</div>
