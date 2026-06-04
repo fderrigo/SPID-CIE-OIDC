@@ -20,3 +20,7 @@ secrets/*
 /profile.html
 /refresh.html
 /logout.html
+
+# infra runtime artifacts (regenerated on each `docker compose up`)
+infra/**/db.sqlite3
+infra/**/logs/*.log
