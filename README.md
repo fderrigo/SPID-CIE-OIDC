@@ -245,5 +245,8 @@ modalità Docker. Lo sviluppo standalone è utile per testare entity config, fir
 ## Crediti
 
 Infrastruttura di test (Trust Anchor, OpenID Provider, chiavi demo) da
-[`italia/spid-cie-oidc-django`](https://github.com/italia/spid-cie-oidc-django) (licenza in
-`infra/UPSTREAM_LICENSE`). Questo progetto implementa il Relying Party in .NET/C#.
+[`italia/spid-cie-oidc-django`](https://github.com/italia/spid-cie-oidc-django)
+(Apache-2.0, vedi `infra/UPSTREAM_LICENSE`). La config vendored è documentata e pinnata in
+[`infra/README.md`](infra/README.md); l'immagine Docker è **pinnata per digest** in
+`docker-compose.yml` per la riproducibilità. Questo progetto implementa il Relying Party
+in .NET/C#.

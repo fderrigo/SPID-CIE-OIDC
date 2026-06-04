@@ -7,7 +7,8 @@
 #   127.0.0.1  trust-anchor.org  relying-party.org  cie-provider.org
 services:
   trust-anchor.org:
-    image: ghcr.io/italia/spid-cie-oidc-django:latest
+    # pinned by digest for reproducibility (the committed infra/ dumps must match this image)
+    image: ghcr.io/italia/spid-cie-oidc-django@sha256:80b594f122139f9264a2ef035d975e29ef49dbf766b087a78f54f67dce24c5be
     ports:
       - "8000:8000"
     volumes:
@@ -21,7 +22,8 @@ services:
       python3 manage.py runserver 0.0.0.0:8000"
 
   cie-provider.org:
-    image: ghcr.io/italia/spid-cie-oidc-django:latest
+    # pinned by digest for reproducibility (the committed infra/ dumps must match this image)
+    image: ghcr.io/italia/spid-cie-oidc-django@sha256:80b594f122139f9264a2ef035d975e29ef49dbf766b087a78f54f67dce24c5be
     ports:
       - "8002:8002"
     volumes:
