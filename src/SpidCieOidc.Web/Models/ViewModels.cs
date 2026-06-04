@@ -2,7 +2,20 @@ using SpidCieOidc.Web.Services;
 
 namespace SpidCieOidc.Web.Models;
 
-public sealed record LandingViewModel(string ClientId, string SpidProvider, string CieProvider);
+/// <summary>An OpenID Provider button binds from Oidc:ProductionProviders / Oidc:LocalProviders.</summary>
+public sealed class ProviderOption
+{
+    public string Profile { get; set; } = "";   // "spid" | "cie"
+    public string Name { get; set; } = "";
+    public string EntityId { get; set; } = "";
+}
+
+public sealed record ProviderEntry(string Profile, string Name, string EntityId, bool Local);
+
+public sealed record LandingViewModel(
+    string ClientId,
+    IReadOnlyList<ProviderEntry> Spid,
+    IReadOnlyList<ProviderEntry> Cie);
 
 public sealed record ProfileViewModel(
     UserProfile Profile,

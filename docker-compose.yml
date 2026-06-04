@@ -45,6 +45,8 @@ services:
     ports:
       - "8001:8001"
     environment:
+      # the local docker stack is a test/dev environment: enables the local provider button.
+      - ASPNETCORE_ENVIRONMENT=Development
       # DEMO ONLY: load the test RP private keys from the mounted secret file.
       # In production set Rp__PrivateKeys (env / Key Vault) or mount a real secret here.
       - Rp__PrivateKeysFile=/secrets/rp_private_keys.json

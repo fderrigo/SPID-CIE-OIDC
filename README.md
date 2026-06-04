@@ -111,17 +111,26 @@ Apri il browser su:
 http://relying-party.org:8001/oidc/rp/landing
 ```
 
-SPID e CIE sono **due OpenID Provider distinti**:
+La landing mostra i bottoni standard **Entra con SPID** (con la lista degli IdP) e
+**Entra con CIE**. I provider sono configurabili:
 
-| Bottone | OpenID Provider | Container |
-|---------|-----------------|-----------|
-| Entra con SPID | `http://trust-anchor.org:8000/oidc/op` ("SPID OIDC identity provider") | trust-anchor.org |
-| Entra con CIE  | `http://cie-provider.org:8002/oidc/op` | cie-provider.org |
+- `Oidc:ProductionProviders` (`appsettings.json`) — IdP/OP di **produzione**, mostrati
+  **sempre**. `EntityId` = entity id di federazione di ogni provider (i valori inclusi sono
+  segnaposto da sostituire con quelli reali prima del go-live).
+- `Oidc:LocalProviders` (`appsettings.Development.json`) — provider **locali di test**,
+  mostrati **solo in `Development`** (badge "locale"), in aggiunta a quelli di produzione.
 
-> Il container `trust-anchor.org` ospita sia il Trust Anchor sia un OP SPID.
-> La scelta del provider è fatta dal parametro `profile` (config `Oidc:Providers` in `appsettings.json`).
+In `Development` (lo stack Docker imposta `ASPNETCORE_ENVIRONMENT=Development`) vedi anche i
+bottoni locali → OP SPID su `trust-anchor.org:8000/oidc/op` e OP CIE su
+`cie-provider.org:8002/oidc/op`. In `Production` compaiono **solo** i provider reali.
 
-Clicca **Entra con SPID** (o CIE) e usa le credenziali demo:
+Ogni voce avvia `GET /oidc/rp/authorization?profile=<spid|cie>&provider=<entityId>`.
+
+> ⚠️ I provider di **produzione** funzionano solo se il RP è realmente registrato nella
+> federazione SPID/CIE di produzione (chiavi e trust anchor reali). Con le chiavi demo
+> falliscono la trust chain: in locale usa i bottoni **locali**.
+
+Clicca un provider **locale** e usa le credenziali demo:
 
 | Username | Password   |
 |----------|------------|

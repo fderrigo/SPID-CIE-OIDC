@@ -5,15 +5,26 @@ using SpidCieOidc.Web.Services;
 namespace SpidCieOidc.Web.Controllers;
 
 /// <summary>RP authorization-code flow endpoints: begin, callback, refresh, logout.</summary>
-public sealed class AuthController(RpConfig rp, OidcClient client, IConfiguration cfg, ILogger<AuthController> log) : Controller
+public sealed class AuthController(
+    RpConfig rp, OidcClient client, IConfiguration cfg, IWebHostEnvironment env, ILogger<AuthController> log) : Controller
 {
     private const string StateCookie = "rp_state";
 
-    private string ProviderFor(string profile) => profile switch
+    // Fallback when the button did not pass an explicit ?provider=: prefer the local
+    // provider in Development, otherwise the first production provider of that profile.
+    private string ProviderFor(string profile)
     {
-        "cie" => cfg["Oidc:Providers:cie"] ?? "http://cie-provider.org:8002/oidc/op",
-        _ => cfg["Oidc:Providers:spid"] ?? "http://trust-anchor.org:8000/oidc/op"
-    };
+        if (env.IsDevelopment())
+        {
+            var local = cfg.GetSection("Oidc:LocalProviders").Get<List<ProviderOption>>()
+                ?.FirstOrDefault(p => p.Profile == profile);
+            if (local is not null) return local.EntityId;
+        }
+        var prod = cfg.GetSection("Oidc:ProductionProviders").Get<List<ProviderOption>>()
+            ?.FirstOrDefault(p => p.Profile == profile);
+        return prod?.EntityId
+            ?? (profile == "cie" ? "http://cie-provider.org:8002/oidc/op" : "http://trust-anchor.org:8000/oidc/op");
+    }
 
     [HttpGet("/oidc/rp/authorization")]
     public async Task<IActionResult> Authorization(string? provider, string? profile, CancellationToken ct)

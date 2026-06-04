@@ -4,7 +4,7 @@ using SpidCieOidc.Web.Services;
 
 namespace SpidCieOidc.Web.Controllers;
 
-public sealed class HomeController(RpConfig rp, IConfiguration cfg) : Controller
+public sealed class HomeController(RpConfig rp, IConfiguration cfg, IWebHostEnvironment env) : Controller
 {
     [HttpGet("/")]
     public IActionResult Index() => RedirectToAction(nameof(Landing));
@@ -12,9 +12,20 @@ public sealed class HomeController(RpConfig rp, IConfiguration cfg) : Controller
     [HttpGet("/oidc/rp/landing")]
     public IActionResult Landing()
     {
-        var spid = cfg["Oidc:Providers:spid"] ?? "http://trust-anchor.org:8000/oidc/op";
-        var cie = cfg["Oidc:Providers:cie"] ?? "http://cie-provider.org:8002/oidc/op";
-        return View(new LandingViewModel(rp.Sub, spid, cie));
+        var production = cfg.GetSection("Oidc:ProductionProviders").Get<List<ProviderOption>>() ?? new();
+        var local = env.IsDevelopment()
+            ? cfg.GetSection("Oidc:LocalProviders").Get<List<ProviderOption>>() ?? new()
+            : new();
+
+        var all = production.Select(p => new ProviderEntry(p.Profile, p.Name, p.EntityId, false))
+            .Concat(local.Select(p => new ProviderEntry(p.Profile, p.Name, p.EntityId, true)))
+            .ToList();
+
+        var model = new LandingViewModel(
+            ClientId: rp.Sub,
+            Spid: all.Where(p => p.Profile == "spid").ToList(),
+            Cie: all.Where(p => p.Profile == "cie").ToList());
+        return View(model);
     }
 
     [HttpGet("/error")]
