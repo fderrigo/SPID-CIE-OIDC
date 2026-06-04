@@ -111,8 +111,11 @@ Apri il browser su:
 http://relying-party.org:8001/oidc/rp/landing
 ```
 
-La landing mostra i bottoni standard **Entra con SPID** (con la lista degli IdP) e
-**Entra con CIE**. I provider sono configurabili:
+La landing usa i **componenti grafici ufficiali**: il pulsante AgID
+[`spid-sp-access-button`](https://github.com/italia/spid-sp-access-button) per **Entra con
+SPID** (menu IdP, ordine randomizzato come da regole AgID) e
+[`cie-graphics`](https://github.com/italia/cie-graphics) per **Entra con CIE** (vendored in
+`wwwroot/lib/`, vedi `wwwroot/lib/README.md`). I provider sono configurabili:
 
 - `Oidc:ProductionProviders` (`appsettings.json`) — IdP/OP di **produzione**, mostrati
   **sempre**. `EntityId` = entity id di federazione di ogni provider (i valori inclusi sono

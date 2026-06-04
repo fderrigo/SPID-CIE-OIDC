@@ -8,9 +8,10 @@ public sealed class ProviderOption
     public string Profile { get; set; } = "";   // "spid" | "cie"
     public string Name { get; set; } = "";
     public string EntityId { get; set; } = "";
+    public string? Logo { get; set; }            // official IdP logo file name (SPID)
 }
 
-public sealed record ProviderEntry(string Profile, string Name, string EntityId, bool Local);
+public sealed record ProviderEntry(string Profile, string Name, string EntityId, bool Local, string? Logo);
 
 public sealed record LandingViewModel(
     string ClientId,

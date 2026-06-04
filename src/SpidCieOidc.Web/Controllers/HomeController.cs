@@ -17,13 +17,17 @@ public sealed class HomeController(RpConfig rp, IConfiguration cfg, IWebHostEnvi
             ? cfg.GetSection("Oidc:LocalProviders").Get<List<ProviderOption>>() ?? new()
             : new();
 
-        var all = production.Select(p => new ProviderEntry(p.Profile, p.Name, p.EntityId, false))
-            .Concat(local.Select(p => new ProviderEntry(p.Profile, p.Name, p.EntityId, true)))
+        var all = production.Select(p => new ProviderEntry(p.Profile, p.Name, p.EntityId, false, p.Logo))
+            .Concat(local.Select(p => new ProviderEntry(p.Profile, p.Name, p.EntityId, true, p.Logo)))
             .ToList();
+
+        // AgID rule: the SPID IdP order MUST be randomized at every render.
+        var spid = all.Where(p => p.Profile == "spid").ToArray();
+        Random.Shared.Shuffle(spid);
 
         var model = new LandingViewModel(
             ClientId: rp.Sub,
-            Spid: all.Where(p => p.Profile == "spid").ToList(),
+            Spid: spid,
             Cie: all.Where(p => p.Profile == "cie").ToList());
         return View(model);
     }

@@ -3,39 +3,54 @@
     ViewData["Title"] = "Accedi — SPID / CIE";
 }
 
+@section Head {
+    <link type="text/css" rel="stylesheet" href="~/lib/spid-sp-access-button/css/spid-sp-access-button.min.css" />
+}
+
 <h1>🔐 Accedi</h1>
 
 <div class="card">
     <div class="login-buttons">
 
-        @* --- Entra con SPID (standard, con lista IdP) --- *@
-        <details class="spid-dropdown">
-            <summary class="btn-spid">
-                <span class="spid-logo">sp<span class="id">id</span></span>
-                Entra con SPID
-            </summary>
-            <ul class="idp-list">
-                @foreach (var p in Model.Spid)
+        @* ===== AGID - Pulsante ufficiale "Entra con SPID" (versione GET) ===== *@
+        <a href="#" class="italia-it-button italia-it-button-size-l button-spid"
+           spid-idp-button="#spid-idp-button-large-get" aria-haspopup="true" aria-expanded="false">
+            <span class="italia-it-button-icon">
+                <img src="~/lib/spid-sp-access-button/img/spid-ico-circle-bb.svg" alt="" />
+            </span>
+            <span class="italia-it-button-text">Entra con SPID</span>
+        </a>
+        <div id="spid-idp-button-large-get" class="spid-idp-button spid-idp-button-tip spid-idp-button-relative">
+            <ul id="spid-idp-list-large-root-get" class="spid-idp-button-menu" aria-labelledby="spid-idp">
+                @foreach (var p in Model.Spid.Where(x => !x.Local))
                 {
-                    <li>
+                    <li class="spid-idp-button-link" data-idp="@p.EntityId">
                         <a href="/oidc/rp/authorization?profile=spid&provider=@Uri.EscapeDataString(p.EntityId)">
-                            @p.Name
-                            @if (p.Local)
-                            {
-                                <span class="badge-local">locale</span>
-                            }
+                            <span class="spid-sr-only">@p.Name</span>
+                            <img src="~/lib/spid-sp-access-button/img/@p.Logo" alt="@p.Name" />
                         </a>
                     </li>
                 }
+                @foreach (var p in Model.Spid.Where(x => x.Local))
+                {
+                    <li class="spid-idp-button-link spid-idp-local" data-idp="@p.EntityId">
+                        <a href="/oidc/rp/authorization?profile=spid&provider=@Uri.EscapeDataString(p.EntityId)">
+                            @p.Name <span class="badge-local">locale</span>
+                        </a>
+                    </li>
+                }
+                <li><a class="dropdown-item" href="https://www.spid.gov.it">Maggiori informazioni</a></li>
+                <li><a class="dropdown-item" href="https://www.spid.gov.it/cos-e-spid/come-attivare-spid/">Non hai SPID?</a></li>
+                <li><a class="dropdown-item" href="https://www.spid.gov.it/serve-aiuto/">Serve aiuto?</a></li>
             </ul>
-        </details>
+        </div>
 
-        @* --- Entra con CIE (standard) --- *@
+        @* ===== Pulsante ufficiale "Entra con CIE" (italia/cie-graphics) ===== *@
         @foreach (var p in Model.Cie)
         {
-            <a class="btn-cie" href="/oidc/rp/authorization?profile=cie&provider=@Uri.EscapeDataString(p.EntityId)">
-                <span class="cie-logo">CIE</span>
-                Entra con CIE
+            <a class="button-cie" href="/oidc/rp/authorization?profile=cie&provider=@Uri.EscapeDataString(p.EntityId)"
+               aria-label="Entra con CIE@(p.Local ? " (locale)" : "")">
+                <img src="~/lib/cie-graphics/entra_con_cie.svg" alt="Entra con CIE" />
                 @if (p.Local)
                 {
                     <span class="badge-local">locale</span>
@@ -55,3 +70,8 @@
             (login demo <code>admin / oidcadmin</code> o <code>user / oidcuser</code>).</p>
     }
 </div>
+
+@section Scripts {
+    <script src="~/lib/spid-sp-access-button/js/jquery.min.js"></script>
+    <script src="~/lib/spid-sp-access-button/js/spid-sp-access-button.min.js"></script>
+}
