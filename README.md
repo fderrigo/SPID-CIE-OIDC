@@ -1,5 +1,9 @@
 # SPID / CIE OIDC — Relying Party .NET (test locale)
 
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+[![.NET 9](https://img.shields.io/badge/.NET-9.0-512BD4.svg)](https://dotnet.microsoft.com/)
+[![OpenID Connect Federation 1.0](https://img.shields.io/badge/OIDC-Federation_1.0-F7931E.svg)](https://openid.net/specs/openid-federation-1_0.html)
+
 Relying Party **ASP.NET Core 9 MVC** (C#) conforme a **OpenID Connect Federation 1.0**
 (profilo SPID/CIE italiano), testabile **interamente in locale** contro l'infrastruttura
 ufficiale AgID (`italia/spid-cie-oidc-django`) eseguita in Docker.
@@ -253,6 +257,29 @@ modalità Docker. Lo sviluppo standalone è utile per testare entity config, fir
 | Porte 8000/8001/8002 occupate | libera le porte o cambia mapping in `docker-compose.yml` |
 
 ---
+
+## Licenza
+
+Il codice del Relying Party .NET sviluppato in questo repository (`src/`, `scripts/`,
+`docker-compose.yml`, documentazione) è rilasciato sotto **Apache License 2.0** —
+vedi [`LICENSE`](./LICENSE). Copyright © 2026 Filippo D'Errigo.
+
+Il repository **include componenti di terze parti** con licenze proprie, elencate in
+[`NOTICE`](./NOTICE): la licenza Apache-2.0 del progetto **non** si estende a questi.
+In sintesi:
+
+| Componente | Origine | Licenza |
+|------------|---------|---------|
+| Infrastruttura di test (`infra/`, chiavi demo) | [`italia/spid-cie-oidc-django`](https://github.com/italia/spid-cie-oidc-django) | Apache-2.0 ([`infra/UPSTREAM_LICENSE`](infra/UPSTREAM_LICENSE)) |
+| Bottone SPID (`wwwroot/lib/spid-sp-access-button/`) | [`italia/spid-sp-access-button`](https://github.com/italia/spid-sp-access-button) | OFL-1.1 / MIT (vedi `LICENSE.md` nella cartella) |
+| Grafica CIE (`wwwroot/lib/cie-graphics/`) | [`italia/cie-graphics`](https://github.com/italia/cie-graphics) | asset ufficiali PA |
+| Dipendenze NuGet (es. `jose-jwt`) | NuGet (a build time) | MIT e altre |
+
+> Le chiavi `secrets/*.sample.json` sono **materiale di test pubblico** delle fixture
+> upstream: solo per la demo locale, **mai in produzione**. Le chiavi private reali non
+> sono né nel repo né nell'immagine (vedi sezione **Secret**).
+
+I loghi e i marchi SPID/CIE e degli Identity Provider sono dei rispettivi proprietari.
 
 ## Crediti
 
