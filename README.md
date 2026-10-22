@@ -258,6 +258,17 @@ modalità Docker. Lo sviluppo standalone è utile per testare entity config, fir
 
 ---
 
+## Sul blog
+
+Scheda del progetto nella sezione Labs di [derrigo.it](https://www.derrigo.it): [SPID/CIE OIDC: Relying Party .NET](https://www.derrigo.it/Products/Info/4/spid-cie-oidc-relying-party-net)
+
+Articoli correlati:
+
+- [L'ecosistema digitale nazionale](https://www.derrigo.it/Articles/Info/4/l-ecosistema-digitale-nazionale)
+- [Paperopoli: un Comune finto costruito sul serio](https://www.derrigo.it/Articles/Info/8/paperopoli-un-comune-finto-costruito-sul-serio)
+
+Chi sono: [Filippo D'Errigo](https://www.derrigo.it/Pages/Info/1/chi-sono)
+
 ## Licenza
 
 Il codice del Relying Party .NET sviluppato in questo repository (`src/`, `scripts/`,
